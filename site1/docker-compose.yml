@@ -1,0 +1,19 @@
+version: '3'
+services:
+  site1:
+    image: httpd
+    container_name: site1
+    restart: always
+    environment: 
+      - VIRTUAL_HOST=site1.com
+    volumes:
+      - ./public/:/usr/local/apache2/htdocs/
+    ports:
+      - 81:80
+    expose:
+      - 81
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
